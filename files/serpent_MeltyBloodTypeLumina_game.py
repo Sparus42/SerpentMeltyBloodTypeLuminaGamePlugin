@@ -104,7 +104,7 @@ class SerpentMeltyBloodTypeLuminaGame(Game, metaclass=Singleton):
 
         return (p1_mem, p2_mem, time)
 
-    def randomize_char(self, player):
+    def set_char(self, player, character=None):
         mAdr = {}
         if player == 1:
             mAdr = self.p1_mAdr
@@ -113,12 +113,13 @@ class SerpentMeltyBloodTypeLuminaGame(Game, metaclass=Singleton):
         else:
             raise ValueError('Player can only be 1 or 2.')
 
-        character = r.randint(0,14)
+        if character == None:
+            character = r.randint(0,14)
         character = character.to_bytes(4, sys.byteorder)
 
         self.window_controller.write_memory(character, mAdr['character'], add_handle=True)
 
-    def randomize_color(self, player):
+    def set_color(self, player, color=None):
         mAdr = {}
         if player == 1:
             mAdr = self.p1_mAdr
@@ -127,9 +128,10 @@ class SerpentMeltyBloodTypeLuminaGame(Game, metaclass=Singleton):
         else:
             raise ValueError('Player can only be 1 or 2.')
 
-        color = r.randint(0,13)
-        if color > 9:
-            color += 32
+        if color == None:
+            color = r.randint(0,13)
+            if color > 9:
+                color += 32
 
         color = color.to_bytes(4, sys.byteorder)
 
