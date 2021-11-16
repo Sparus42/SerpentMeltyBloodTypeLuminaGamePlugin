@@ -1,7 +1,6 @@
 from serpent.game import Game
 
 from .api.api import MeltyBloodTypeLuminaAPI
-from .lib.memread import read_process_memory
 
 from serpent.utilities import Singleton
 
