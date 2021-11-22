@@ -91,15 +91,15 @@ class SerpentMeltyBloodTypeLuminaGame(Game, metaclass=Singleton):
         #Get player 1 memory data
         p1_mem = {}
         for key in self.p1_mAdr:
-            p1_mem[key] = int.from_bytes(self.window_controller.read_memory(self.p1_mAdr[key], add_handle=True), sys.byteorder)
+            p1_mem[key] = int.from_bytes(self.window_controller.read_memory(self.p1_mAdr[key]), sys.byteorder)
 
         #Get player 2 memory data
         p2_mem = {}
         for key in self.p2_mAdr:
-            p2_mem[key] = int.from_bytes(self.window_controller.read_memory(self.p2_mAdr[key], add_handle=True), sys.byteorder)
+            p2_mem[key] = int.from_bytes(self.window_controller.read_memory(self.p2_mAdr[key]), sys.byteorder)
 
         #Get generic memory data
-        time = int.from_bytes(self.window_controller.read_memory(self.time_mAdr, add_handle=True), sys.byteorder)
+        time = int.from_bytes(self.window_controller.read_memory(self.time_mAdr), sys.byteorder)
 
         return (p1_mem, p2_mem, time)
 
@@ -116,7 +116,7 @@ class SerpentMeltyBloodTypeLuminaGame(Game, metaclass=Singleton):
             character = r.randint(0,14)
         character = character.to_bytes(4, sys.byteorder)
 
-        self.window_controller.write_memory(character, mAdr['character'], add_handle=True)
+        self.window_controller.write_memory(character, mAdr['character'])
 
     def set_color(self, player, color=None):
         mAdr = {}
@@ -134,4 +134,4 @@ class SerpentMeltyBloodTypeLuminaGame(Game, metaclass=Singleton):
 
         color = color.to_bytes(4, sys.byteorder)
 
-        self.window_controller.write_memory(color, mAdr['color'], add_handle=True)
+        self.window_controller.write_memory(color, mAdr['color'])
